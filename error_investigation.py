@@ -28,6 +28,7 @@ except ZeroDivisionError:
 except Exception as ex:
     print ("Something went wrong")
     print (ex)
+    print (ex.__class__.__name__)
     answer = -1  
 finally:
     # this code gets run regardless

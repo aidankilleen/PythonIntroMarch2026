@@ -10,7 +10,7 @@ class User():
         
     def __str__(self):
         # function to convert this object to a string
-        return f"{self.id} {self.name} {self.email} {"Active" if self.active else "Inactive"}"
+        return f"{self.id} {self.name} {self.email} {("Active" if self.active else "Inactive")}"
     
     def __repr__(self):
         # function to return the debug representaton of the object
