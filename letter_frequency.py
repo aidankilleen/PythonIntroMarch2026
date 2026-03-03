@@ -1,6 +1,6 @@
 # letter_frequency.py
 
-s = "aaaa abc dAAA!!£$%^"
+s = "aaaa abc dAAA!!£$%^sdfsdfadsasd"
 
 # how many of each letter?
 
