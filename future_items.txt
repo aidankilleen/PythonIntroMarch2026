@@ -1,0 +1,20 @@
+
+Better Understanding OOP 
+- Abstraction
+- Encapsulation
+- Inheritance
+- Polymorphism
+
+More DB & SQL
+
+PyQt6 - in particular we use OOP for this style of programming
+
+Asynchronous Programming / threading to create responsive applications that don't freeze on long-running jobs
+
+lambda, used for processing arrays and for list comprehensions
+
+Creating Web Applications using python
+
+Automated test techniques
+
+Adding AI features by calling the ChatGPT api 
