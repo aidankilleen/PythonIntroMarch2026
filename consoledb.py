@@ -14,6 +14,5 @@ users = dao.get_all()
 for user in users:
     print (user)
 
-
 dao.close()
 
