@@ -23,12 +23,21 @@ class UserDao():
             id, name, email, active = rec
             user = User(id, name, email, active)
             users.append(user)
-
         return users
 
     def add(self, user):
         # add this user to the db
-        pass
+        sql = """INSERT INTO users 
+            (name, email, active) 
+            VALUES(?,?,?)"""
+        cur = self.conn.execute(sql, (user.name, user.email, user.active))
+        self.conn.commit()
+
+        # get the id of the newly added user
+        newid = cur.lastrowid if cur.lastrowid else 0
+        # return a user object including the id
+        return User(newid, user.name, user.email, user.active)
+
     def delete(self, id):
         # delete user id from the db
         sql = f"DELETE FROM users WHERE id={id}"
@@ -46,27 +55,34 @@ class UserDao():
             (user.name, user.email, 1 if user.active else 0, user.id))
         self.conn.commit()
 
-    
-print ("UserDao tests")    
-dao = UserDao()
+if __name__ == "__main__":
+    print ("UserDao tests")    
+    dao = UserDao()
 
-dao.delete(15)
+    new_user = User(name="new", email="nu@gmail.com", active=False)
 
-users = dao.get_all()
+    added_user = dao.add(new_user)
 
-print (users[-1])
+    print (added_user)
 
-user_to_update = users[-1]
-user_to_update.name = "changed"
-user_to_update.email = "changed@gmail.com"
-user_to_update.active = not user_to_update.active
-
-dao.update(user_to_update)
-
-users = dao.get_all()
-
-for user in users:
-    print (user)
+    dao.delete(15)
 
 
-dao.close()
+    users = dao.get_all()
+
+    print (users[0])
+
+    user_to_update = users[0]
+    user_to_update.name = "changed"
+    user_to_update.email = "changed@gmail.com"
+    user_to_update.active = not user_to_update.active
+
+    dao.update(user_to_update)
+
+    users = dao.get_all()
+
+    for user in users:
+        print (user)
+
+
+    dao.close()
